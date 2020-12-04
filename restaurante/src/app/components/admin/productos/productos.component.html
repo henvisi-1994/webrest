@@ -1,0 +1,68 @@
+<h1>Productos</h1>
+<!—Boton para abrir Ventana Modal -->
+  <button class="btn btn-primary" (click)="open(productoModal)">Nuevo</button>
+  <br>
+  <!—Ventana Modal -->
+    <ng-template #productoModal let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Producto</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="">Nombre</label>
+            <input type="text" name="tipo" class="form-control" placeholder="Ingrese nombre del cliente">
+          </div>
+          <div class="form-group">
+            <label for="">Precio</label>
+            <input type="text" name="tipo" class="form-control" placeholder="Ingrese telefono del cliente">
+          </div>
+          <div class="form-group">
+            <label for="">Local</label>
+            <select class="form-control">
+              <option>Local 1</option>
+              <option>Local 2</option>
+              <option>Local 3</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Cerrar</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </ng-template>
+    <!--Cierre Ventana Modal  -->
+    <br>
+    <!-- Lista de Aportes -->
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Código</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Local</th>
+          <th scope="col">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Recorre arreglo de aportes almacenándola en variable  producto desde productos -->
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <!-- Envia datos de determinado producto desde arreglo a NgModel de producto -->
+            <button class="btn btn-warning"><i class="far fa-edit"></i></button> &nbsp;
+            <!-- Elimina producto obteniendo id desde arreglo a NgModel de producto -->
+            <button class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Cierre de Lista de Productos -->
+

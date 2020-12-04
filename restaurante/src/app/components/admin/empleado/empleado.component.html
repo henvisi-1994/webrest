@@ -1,0 +1,83 @@
+<h1>Empleados</h1>
+<!—Boton para abrir Ventana Modal -->
+  <button class="btn btn-primary" (click)="open(empleadoModal)">Nuevo</button>
+  <br>
+  <!—Ventana Modal -->
+    <ng-template #empleadoModal let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Empleado</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="">Nombre</label>
+            <input type="text" name="tipo" class="form-control" placeholder="Ingrese nombre del cliente">
+          </div>
+          <div class="form-group">
+            <label for="">Telefono</label>
+            <input type="text" name="tipo" class="form-control" placeholder="Ingrese telefono del cliente">
+          </div>
+          <div class="form-group">
+            <label for="">Direción</label>
+            <input type="text" name="tipo" class="form-control" placeholder="Ingrese tipo de Empresa">
+          </div>
+          <div class="form-group">
+            <label for="">Local</label>
+            <select class="form-control">
+              <option>Local 1</option>
+              <option>Local 2</option>
+              <option>Local 3</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="">Usuario</label>
+            <select class="form-control">
+              <option>Usuario 1</option>
+              <option>Usuario 2</option>
+              <option>Usuario 3</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Cerrar</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </ng-template>
+    <!--Cierre Ventana Modal  -->
+    <br>
+    <!-- Lista de Aportes -->
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Código</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Direción</th>
+          <th scope="col">Telefono</th>
+          <th scope="col">Local</th>
+          <th scope="col">Usuario</th>
+          <th scope="col">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Recorre arreglo de aportes almacenándola en variable  producto desde productos -->
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <!-- Envia datos de determinado producto desde arreglo a NgModel de producto -->
+            <button class="btn btn-warning"><i class="far fa-edit"></i></button> &nbsp;
+            <!-- Elimina producto obteniendo id desde arreglo a NgModel de producto -->
+            <button class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Cierre de Lista de Productos -->
