@@ -26,8 +26,10 @@ public class Telefono implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_TELEFONO")
-    private String numerotelef;
     private int idtelefono;
+    @Column(name = "ID_TELEFONO")
+    private String numerotelef;
+    @Column(name = "ID_LOCAL")
     private int idlocal;
 
     public Telefono() {
@@ -40,8 +42,10 @@ public class Telefono implements Serializable{
     }
 
     public Telefono(int idtelefono) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.idtelefono = idtelefono;
     }
+
+
 
     public String getNumerotelef() {
         return numerotelef;

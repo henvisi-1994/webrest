@@ -27,6 +27,7 @@ public class Pedidos implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_PEDIDO")
     private int idpedido;
+    @Column(name = "TIPO_PEDIDO")
     private String tipopedido;
 
     public Pedidos() {
@@ -38,7 +39,7 @@ public class Pedidos implements Serializable{
     }
 
     public Pedidos(int idpedido) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.idpedido = idpedido;
     }
 
     public int getIdpedido() {

@@ -17,7 +17,7 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Producto.encontrarTodosProductos", query = "SELECT PRODUCTO.ID_PRODUCTO, PRECIO_PRODUCT, NOM_PROD, PRODUCTO.ID_LOCAL, DIR_LOCAL FROM PRODUCTO INNER JOIN LOCAL ON PRODUCTO.ID_LOCAL = LOCAL.ID_LOCAL ORDER BY ID_PRODUCTO")
+    @NamedQuery(name = "Producto.encontrarTodosProductos", query = "SELECT prod FROM PRODUCTO prod")
 })
 
 public class Producto implements Serializable{
@@ -25,8 +25,11 @@ public class Producto implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_PRODUCTO")
     private int idproducto;
+    @Column(name = "PRECIO_PRODUCTO")
     private float precioproducto;
+    @Column(name = "NOM_PRODUCTO")
     private String nomprod;
+    @Column(name = "ID_LOCAL")
     private int idlocal;
 
     public Producto() {
