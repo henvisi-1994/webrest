@@ -1,11 +1,11 @@
-<h1>Productos</h1>
+<h1>PedidoProveedor</h1>
 <!—Boton para abrir Ventana Modal -->
-  <button class="btn btn-primary" (click)="open(productoModal)">Nuevo</button>
+  <button class="btn btn-primary" (click)="open(pedidoproveedorModal)">Nuevo</button>
   <br>
   <!—Ventana Modal -->
-    <ng-template #productoModal let-modal>
+    <ng-template #pedidoproveedorModal let-modal>
       <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Producto</h4>
+        <h4 class="modal-title" id="modal-basic-title">PedidoProveedor</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
           <span aria-hidden="true">×</span>
         </button>
@@ -13,14 +13,14 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="">Nombre</label>
-            <input type="text" name="tipo" class="form-control" placeholder="Ingrese nombre del producto"
-            [(ngModel)]="producto.nom_prod">
+            <label for="">Cantidad Pedido</label>
+            <input type="text" name="tipo" class="form-control" placeholder="Ingrese una cantidad"
+            [(ngModel)]="pedidoproveedor.cantidad_pedido_prov">
           </div>
           <div class="form-group">
-            <label for="">Precio</label>
-            <input type="text" name="tipo" class="form-control" placeholder="Ingrese el precio del producto"
-            [(ngModel)]="producto.precio_product">
+            <label for="">Fecha caducidad pedido</label>
+            <input type="date" name="tipo" class="form-control" placeholder="Ingrese una fecha"
+            [(ngModel)]="pedidoproveedor.Fecha_caducidad_ped_prov">
           </div>
           <div class="form-group">
             <label for="">Local</label>
@@ -34,7 +34,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Cerrar</button>
-        <button type="button" class="btn btn-primary"(click)="guardarProducto()">Guardar</button>
+        <button type="button" class="btn btn-primary"(click)="guardarPedidoProveedor()">Guardar</button>
       </div>
     </ng-template>
     <!--Cierre Ventana Modal  -->
@@ -44,27 +44,28 @@
       <thead class="thead-dark">
         <tr>
           <th scope="col">Código</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Precio</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Caducidad</th>
+          <th scope="col">Proveedor</th>
           <th scope="col">Local</th>
           <th scope="col">Opciones</th>
         </tr>
       </thead>
       <tbody>
         <!-- Recorre arreglo de aportes almacenándola en variable  producto desde productos -->
-         <tr *ngFor="let producto of productos">
-          <td>{{producto.id_producto}}</td>
-          <td>{{producto.nom_prod}}</td>
-          <td>{{producto.precio_product}}</td>
-          <td>{{producto.id_local}}</td>
+         <tr *ngFor="let pedidoproveedor of pedidoproveedores">
+          <td>{{pedidoproveedor.id_dedido_prov}}</td>
+          <td>{{pedidoproveedor.cantidad_pedido_prov}}</td>
+          <td>{{pedidoproveedor.Fecha_caducidad_ped_prov}}</td>
+          <td>{{pedidoproveedor.id_prov}}</td>
+          <td>{{pedidoproveedor.id_local}}</td>
           <td>
             <!-- Envia datos de determinado producto desde arreglo a NgModel de producto -->
-            <button class="btn btn-warning" (click)="editProducto(producto)"><i class="fa fa-edit"></i></button> &nbsp;
+            <button class="btn btn-warning" (click)="editPedidoProveedor(pedidoproveedor)"><i class="fa fa-edit"></i></button> &nbsp;
             <!-- Elimina producto obteniendo id desde arreglo a NgModel de producto -->
-            <button class="btn btn-danger"(click)="borrarProducto(producto.id_producto)"><i class="fa fa-trash-alt"></i></button>
+            <button class="btn btn-danger"(click)="borrarPedidoProveedor(pedidoproveedor.id_dedido_prov)"><i class="fa fa-trash-alt"></i></button>
           </td>
         </tr>
       </tbody>
     </table>
     <!-- Cierre de Lista de Productos -->
-

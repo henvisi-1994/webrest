@@ -27,7 +27,7 @@ export class PedidoProveedorService {
     return this.http.put(`${this.API_URI}/PedidoProveedor/${id_dedido_prov}`, updatePedidoProveedor);
   }
 
-  deletePedidos(id_dedido_prov: number) {
+  deletePedidoProveedor(id_dedido_prov: number) {
     return this.http.delete(`${this.API_URI}/PedidoProveedor/${id_dedido_prov}`);
   }
 

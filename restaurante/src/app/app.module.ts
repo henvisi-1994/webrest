@@ -29,6 +29,7 @@ import { MenuComponent } from './components/admin/menu/menu.component';
 import { PlatosComponent } from './components/admin/platos/platos.component';
 import { IngredientesComponent } from './components/admin/ingredientes/ingredientes.component';
 import { TipoPlatoComponent } from './components/admin/tipo-plato/tipo-plato.component';
+import { PedidoProveedorComponent } from './components/admin/pedido-proveedor/pedido-proveedor.component';
 
 
 const routes: Route[] = [
@@ -77,7 +78,8 @@ const routes: Route[] = [
     MenuComponent,
     PlatosComponent,
     IngredientesComponent,
-    TipoPlatoComponent
+    TipoPlatoComponent,
+    PedidoProveedorComponent
   ],
   imports: [
     BrowserModule,

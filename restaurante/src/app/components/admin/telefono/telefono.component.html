@@ -14,7 +14,8 @@
         <form>
           <div class="form-group">
             <label for="">Numero</label>
-            <input type="text" name="tipo" class="form-control" placeholder="Ingrese nombre del cliente">
+            <input type="text" name="tipo" class="form-control" placeholder="Ingrese numero de telefono"
+            [(ngModel)]="telefono.numero_telf">
           </div>
           <div class="form-group">
             <label for="">Local</label>
@@ -45,15 +46,15 @@
       </thead>
       <tbody>
         <!-- Recorre arreglo de aportes almacenándola en variable  producto desde productos -->
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr *ngFor="let telefono of telefonos">
+          <td>{{telefono.id_telefono}}</td>
+          <td>{{telefono.numero_telf}}</td>
+          <td>{{telefono.id_local}}</td>
           <td>
             <!-- Envia datos de determinado producto desde arreglo a NgModel de producto -->
-            <button class="btn btn-warning"><i class="far fa-edit"></i></button> &nbsp;
+            <button class="btn btn-warning"(click)="editTelefono(telefono)"><i class="fa fa-edit"></i></button> &nbsp;
             <!-- Elimina producto obteniendo id desde arreglo a NgModel de producto -->
-            <button class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+            <button class="btn btn-danger"(click)="borrarTelefono(telefono.id_telefono)"><i class="fa fa-trash-alt"></i></button>
           </td>
         </tr>
       </tbody>
