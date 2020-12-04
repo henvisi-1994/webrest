@@ -1,5 +1,7 @@
+import { ProductoService } from './../../../services/producto.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Producto } from 'src/app/models/Producto';
 
 @Component({
   selector: 'app-productos',
@@ -10,9 +12,19 @@ export class ProductosComponent implements OnInit {
 
   closeResult: string;
   @ViewChild('productoModal', {static: false}) modal: ElementRef;
-  constructor(private modalService: NgbModal) { }
+
+  edit = false;
+  producto: Producto = {
+    id_producto: '',
+    precio_product: 0,
+    id_local: 0,
+    nom_prod: '',
+  };
+  productos: any;
+  constructor(private modalService: NgbModal, private productoService: ProductoService) { }
 
   ngOnInit(): void {
+    this.getProductos();
   }
   // Boton para abrir ventana modal
   open(content) {
@@ -33,5 +45,58 @@ private getDismissReason(reason: any): string {
   }
 }
 
+// Lena arreglo de productos
+getProductos() {
+  this.productoService.getProductos().subscribe(
+    (res: any) => {
+      this.productos = res;
+    },
+    err => {
+
+    }
+  );
+}
+
+public editProducto(producto: Producto) {
+  this.producto.nom_prod= producto.nom_prod;
+  this.producto.precio_product = producto.precio_product;
+  this.producto.id_local= producto.id_local;
+  this.edit = true;
+  this.modalService.open(this.modal);
+}
+
+public borrarProducto(id_producto: String) {
+  this.productoService.deleteProducto(id_producto).subscribe(
+    (res: any) => {
+        this.getProductos();
+    },
+    err => {
+    }
+  );
+}
+
+public saveProducto() {
+  this.productoService.guardarProducto(this.producto).subscribe(
+    (res: any) => {
+      this.getProductos();
+    },
+    err => {
+    }
+  );
+}
+
+public updateProducto() {
+  this.productoService.updateProducto(this.producto.id_producto, this.producto).subscribe(
+    (res: any) => {
+      this.getProductos();
+    },
+    err => {
+
+    }
+  );
+}
+public guardarProducto() {
+  (this.edit ? this.updateProducto() : this.saveProducto());
+}
 
 }
