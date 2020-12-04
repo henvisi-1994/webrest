@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { SectionAboutComponent } from './components/layout/section-about/section-about.component';
@@ -27,6 +29,7 @@ import { MenuComponent } from './components/admin/menu/menu.component';
 import { PlatosComponent } from './components/admin/platos/platos.component';
 import { IngredientesComponent } from './components/admin/ingredientes/ingredientes.component';
 import { TipoPlatoComponent } from './components/admin/tipo-plato/tipo-plato.component';
+
 
 const routes: Route[] = [
   {path: '', component: PrincipalLayoutComponent},
@@ -78,7 +81,9 @@ const routes: Route[] = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
