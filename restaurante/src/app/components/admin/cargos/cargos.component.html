@@ -14,14 +14,14 @@
     <form >
       <div class="form-group">
         <label for="">Nombre</label>
-        <input type="text" name="tipo"  class="form-control" placeholder="Ingrese nombre del cliente" >
+        <input type="text" name="tipo" [(ngModel)]="cargo.nombre_cargo"  class="form-control" placeholder="Ingrese nombre del cliente" >
       </div>
 
     </form>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Cerrar</button>
-    <button type="button" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-primary" (click)="guardarcargo()">Guardar</button>
   </div>
 </ng-template>
 <!--Cierre Ventana Modal  -->
@@ -37,14 +37,14 @@
   </thead>
   <tbody>
 <!-- Recorre arreglo de aportes almacenándola en variable  producto desde productos -->
-    <tr>
+    <tr *ngFor="let cargo of cargos">
       <td></td>
       <td></td>
       <td>
 <!-- Envia datos de determinado producto desde arreglo a NgModel de producto -->
-          <button class="btn btn-warning"><i class="far fa-edit"></i></button> &nbsp;
+          <button class="btn btn-warning" (click)="editcargo(cargo)"><i class="far fa-edit"></i></button> &nbsp;
 <!-- Elimina producto obteniendo id desde arreglo a NgModel de producto -->
-          <button class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+          <button class="btn btn-danger" (click)="borrarcargo(cargo.id_cargo)"><i class="far fa-trash-alt"></i></button>
       </td>
     </tr>
   </tbody>

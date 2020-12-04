@@ -14,25 +14,25 @@
     <form >
       <div class="form-group">
         <label for="">Nombre</label>
-        <input type="text" name="tipo"  class="form-control" placeholder="Ingrese nombre del cliente" >
+        <input type="text" name="nombre" [(ngModel)]="cliente.nom_cli"  class="form-control" placeholder="Ingrese nombre del cliente" >
       </div>
       <div class="form-group">
         <label for="">Apellido</label>
-        <input type="text" name="tipo" class="form-control" placeholder="Ingrese apellido del cliente" >
+        <input type="text" name="apellido" [(ngModel)]="cliente.ape_cli" class="form-control" placeholder="Ingrese apellido del cliente" >
       </div>
       <div class="form-group">
         <label for="">Telefono</label>
-        <input type="text" name="tipo" class="form-control" placeholder="Ingrese telefono del cliente" >
+        <input type="text" name="tipo"[(ngModel)]="cliente.ape_cli" class="form-control" placeholder="Ingrese telefono del cliente" >
       </div>
       <div class="form-group">
         <label for="">Direción</label>
-        <input type="text" name="tipo"  class="form-control" placeholder="Ingrese tipo de Empresa" >
+        <input type="text" name="tipo" [(ngModel)]="cliente.dir_cli" class="form-control" placeholder="Ingrese tipo de Empresa" >
       </div>
     </form>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Cerrar</button>
-    <button type="button" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-primary" (click)="guardarcliente()">Guardar</button>
   </div>
 </ng-template>
 <!--Cierre Ventana Modal  -->
@@ -51,17 +51,17 @@
   </thead>
   <tbody>
 <!-- Recorre arreglo de aportes almacenándola en variable  producto desde productos -->
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+    <tr *ngFor="let cliente of clientes">
+      <td>{{cliente.id_cli}}</td>
+      <td>{{cliente.nom_cli}}</td>
+      <td>{{cliente.ape_cli}}</td>
+      <td>{{cliente.tel_cli}}</td>
+      <td>{{cliente.dir_cli}}</td>
       <td>
 <!-- Envia datos de determinado producto desde arreglo a NgModel de producto -->
-          <button class="btn btn-warning"><i class="far fa-edit"></i></button> &nbsp;
+          <button class="btn btn-warning" (click)="editcliente(cliente)"><i class="far fa-edit"></i></button> &nbsp;
 <!-- Elimina producto obteniendo id desde arreglo a NgModel de producto -->
-          <button class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+          <button class="btn btn-danger" (click)="borrarcliente(cliente.id_cli)"><i class="far fa-trash-alt"></i></button>
       </td>
     </tr>
   </tbody>

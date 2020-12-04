@@ -1,3 +1,5 @@
+import { ProveedorService } from './../../../services/proveedor.service';
+import { Proveedor } from './../../../models/Proveedor';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
@@ -10,8 +12,16 @@ export class ProveedoresComponent implements OnInit {
 
   closeResult: string;
   @ViewChild('proveedorModal', {static: false}) modal: ElementRef;
-  constructor(private modalService: NgbModal) { }
+  edit = false;
+  proveedor: Proveedor = {
+    id_prov: 0,
+    nom_prov: '',
+    id_local: 0,
+  };
+  proveedores: any;
+  constructor(private modalService: NgbModal, private proveedoresService: ProveedorService) { }
   ngOnInit(): void {
+
   }
   // Boton para abrir ventana modal
   open(content) {
@@ -30,6 +40,57 @@ private getDismissReason(reason: any): string {
   } else {
     return  `with: ${reason}`;
   }
+}
+// Lena arreglo de productos
+getproveedores() {
+  this.proveedoresService.getProveedores().subscribe(
+    (res: any) => {
+      this.proveedores = res;
+    },
+    err => {
+
+    }
+  );
+}
+
+public editproveedor(proveedor: Proveedor) {
+  this.proveedor.id_prov = proveedor.id_prov;
+  this.proveedor.nom_prov = proveedor.nom_prov;
+  this.edit = true;
+  this.modalService.open(this.modal);
+}
+// tslint:disable-next-line: variable-name
+public borrarproveedor(id_proveedor: number) {
+  this.proveedoresService.deleteProveedor(id_proveedor).subscribe(
+    (res: any) => {
+        this.getproveedores();
+    },
+    err => {
+    }
+  );
+}
+public saveproveedor() {
+  this.proveedoresService.guardarProveedor(this.proveedor).subscribe(
+    (res: any) => {
+      this.getproveedores();
+      this.modalService.dismissAll();
+    },
+    err => {
+    }
+  );
+}
+public updateproveedor() {
+ this.proveedoresService.updateProveedor(this.proveedor.id_prov, this.proveedor).subscribe(
+    (res: any) => {
+      this.getproveedores();
+      this.modalService.dismissAll();
+    },
+    err => {
+    }
+  );
+}
+public guardarproveedor() {
+  (this.edit ? this.updateproveedor() : this.saveproveedor());
 }
 
 }

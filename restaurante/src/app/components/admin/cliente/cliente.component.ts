@@ -1,3 +1,5 @@
+import { Cliente } from './../../../models/Cliente';
+import { ClienteService } from './../../../services/cliente.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
@@ -9,9 +11,19 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class ClienteComponent implements OnInit {
   closeResult: string;
   @ViewChild('clienteModal', {static: false}) modal: ElementRef;
-  constructor(private modalService: NgbModal) { }
+  edit = false;
+  cliente: Cliente = {
+    id_cli: '',
+  nom_cli: '',
+  ape_cli: '',
+  tel_cli: '',
+  dir_cli: '',
+  };
+  clientes: any;
+  constructor(private modalService: NgbModal, private clienteService: ClienteService) { }
 
   ngOnInit(): void {
+    this.getclientes();
   }
   // Boton para abrir ventana modal
   open(content) {
@@ -31,4 +43,60 @@ private getDismissReason(reason: any): string {
     return  `with: ${reason}`;
   }
 }
+// Lena arreglo de productos
+getclientes() {
+  this.clienteService.getClientes().subscribe(
+    (res: any) => {
+      this.clientes = res;
+    },
+    err => {
+
+    }
+  );
+}
+
+public editcliente(cliente: Cliente) {
+  this.cliente.id_cli = cliente.id_cli;
+  this.cliente.nom_cli = cliente.nom_cli;
+  this.cliente.ape_cli = cliente.ape_cli;
+  this.cliente.tel_cli = cliente.tel_cli;
+  this.cliente.dir_cli = cliente.dir_cli;
+  this.edit = true;
+  this.modalService.open(this.modal);
+}
+// tslint:disable-next-line: variable-name
+public borrarcliente(id_cli: string) {
+  this.clienteService.deleteCliente(id_cli).subscribe(
+    (res: any) => {
+        this.getclientes();
+    },
+    err => {
+    }
+  );
+}
+public savecliente() {
+  this.clienteService.guardarCliente(this.cliente).subscribe(
+    (res: any) => {
+      this.getclientes();
+      this.modalService.dismissAll();
+    },
+    err => {
+    }
+  );
+}
+public updatecliente() {
+ this.clienteService.updateCliente(this.cliente.id_cli, this.cliente).subscribe(
+    (res: any) => {
+      this.getclientes();
+      this.modalService.dismissAll();
+    },
+    err => {
+    }
+  );
+}
+public guardarcliente() {
+  (this.edit ? this.updatecliente() : this.savecliente());
+}
+
+
 }
