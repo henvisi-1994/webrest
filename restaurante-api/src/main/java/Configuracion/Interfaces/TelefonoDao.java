@@ -5,7 +5,8 @@
  */
 package Configuracion.Interfaces;
 
-import Inventario.Pedidos;
+import Configuracion.Telefono;
+
 import java.util.List;
 
 /**
@@ -13,13 +14,13 @@ import java.util.List;
  * @author Usuario
  */
 public interface TelefonoDao {
-     public List<Pedidos> encontrarTodosPedidos();
+     public List<Telefono> encontrarTodosTelefonos();
     
-    public Pedidos encontrarPedidos(Pedidos pedido);
+    public Telefono encontrarTelefono(Telefono pedido);
     
-    public void ingresarPedido(Pedidos pedido);
+    public void ingresarTelefono(Telefono pedido);
     
-    public void actualizarPedido(Pedidos pedido);
+    public void actualizarTelefono(Telefono pedido);
     
-    public void eliminarPedido(Pedidos pedido);
+    public void eliminarTelefono(Telefono pedido);
 }
