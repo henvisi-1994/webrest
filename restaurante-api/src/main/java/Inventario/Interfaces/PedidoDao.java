@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Configuracion.Interfaces;
+package Inventario.Interfaces;
 
 import Inventario.Pedidos;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Usuario
  */
-public interface TelefonoDao {
+public interface PedidoDao {
      public List<Pedidos> encontrarTodosPedidos();
     
     public Pedidos encontrarPedidos(Pedidos pedido);
